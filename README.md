@@ -15,4 +15,5 @@
 از نمونه بخش‌هایی که coverage آنها نیاز به بهبود دارد کلاس `PersonServiceImpl` و `Traffic` هستند.
 
 ![person service coverage](./assets/person-behavior-coverage.png)
+
 ![traffic coverage](./assets/traffic-coverage.png)
