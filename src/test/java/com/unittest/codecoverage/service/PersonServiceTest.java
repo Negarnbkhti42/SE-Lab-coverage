@@ -1,6 +1,7 @@
 package com.unittest.codecoverage.service;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
@@ -95,6 +96,18 @@ public class PersonServiceTest {
 			.isInstanceOf(PersonException.class)
 			.hasFieldOrPropertyWithValue("errors", expectedErrors)
 			.hasMessage(expectedMessage);
+	}
+
+	@Test
+	public void testGet_shouldThrowPersonExceptionOnlyWhenNameIsNotProvided() {
+		List<String> expectedErrors = Lists.newArrayList("Name is required");
+		String expectedMessage = String.join(";", expectedErrors);
+
+		assertThatThrownBy(() -> service.get("   "))
+				.isInstanceOf(PersonException.class)
+				.hasFieldOrPropertyWithValue("errors", expectedErrors)
+				.hasMessage(expectedMessage);
+		assertDoesNotThrow(() -> service.get("Name"));
 	}
 
 }
