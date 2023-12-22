@@ -110,4 +110,15 @@ public class PersonServiceTest {
 		assertDoesNotThrow(() -> service.get("Name"));
 	}
 
+	@Test
+	public void testUpdate_shouldNotThrowPersonNameAndGenderIsSet() {
+		List<String> expectedErrors = Lists.newArrayList("Name is required");
+		String expectedMessage = String.join(";", expectedErrors);
+		Person person = new Person();
+		person.setName("name");
+		person.setGender(Gender.M);
+
+		assertDoesNotThrow(() -> service.update(person));
+	}
+
 }
